@@ -18,6 +18,8 @@ function Home() {
       .catch((err) => console.log(err));
   }, []);
 
+
+
   const handleEdit = (id) => {
     axios
       .put("http://localhost:3001/update/" + id)
@@ -31,6 +33,8 @@ function Home() {
       .catch((err) => console.log(err));
   };
 
+
+  
   const handleDelete = (id) => {
     axios
       .delete("http://localhost:3001/delete/" + id)
@@ -39,6 +43,7 @@ function Home() {
       })
       .catch((err) => console.log(err));
   };
+
 
   return (
     <div className="home">

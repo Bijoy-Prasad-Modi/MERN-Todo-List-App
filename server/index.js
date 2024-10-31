@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const TodoModel = require('./Models/Todo.js');
 
+
 const app = express();
 app.use(cors()); //Enable CORS for cross-domain requests
 app.use(express.json()); //Parse incoming requests as JSON
@@ -10,6 +11,7 @@ app.use(express.json()); //Parse incoming requests as JSON
 mongoose.connect('mongodb://127.0.0.1:27017/test')  //Connecting to MongoDB
 
 
+//Read
 app.get('/get',(req, res)=>{
     TodoModel.find()
     .then(result => res.json(result))
@@ -17,6 +19,7 @@ app.get('/get',(req, res)=>{
 });
 
 
+//Update
 app.put('/update/:id', (req, res)=>{
     const{id} = req.params;
     TodoModel.findByIdAndUpdate({_id: id}, {done: true})
@@ -25,6 +28,7 @@ app.put('/update/:id', (req, res)=>{
 });
 
 
+//Delete
 app.delete('/delete/:id', (req, res)=>{
     const{id} = req.params;
     TodoModel.findByIdAndDelete({_id: id})
@@ -33,6 +37,7 @@ app.delete('/delete/:id', (req, res)=>{
 });
 
 
+//Create
 app.post('/add', (req, res) =>{
     const task = req.body.task;
     TodoModel.create({ task })
